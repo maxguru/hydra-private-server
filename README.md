@@ -29,11 +29,11 @@ Example,
 ## Remove a proxy
 
 ```
-# ./teardown_endpoint.sh "1.2.3.4"
+# ./teardown_proxy.sh "1.2.3.4"
 ```
 
 ## Remove target configuration
 
 ```
-# ./teardown_endpoint.sh "1.2.3.4"
+# ./teardown_target.sh "1.2.3.4"
 ```
