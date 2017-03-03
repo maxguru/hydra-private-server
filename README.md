@@ -2,13 +2,16 @@
 
 Let's say you have a hidden server behind firewalls (or NAT) that you want to make publicly reachable on the Internet via a number of short-lived Debian-based "reverse-proxy" VPSes.
 
-## Initial setup
+## Initial target setup
 
-Run on target,
+Clone this repo on the target system (where you have hidden serices running).
+
+Run setup to initialize settings,
 ```
 # ./setup_target.sh <target VPN interface IP> <target VPN interface netmask> "<space separated port list>"
 ```
-This generates `config.sh`.
+This generates `config.sh`, `fastd.conf`.
+
 Example,
 ```
 # ./setup_target.sh 192.168.95.1 255.255.255.0 "80 443"
@@ -20,11 +23,20 @@ This will auto-configure a blank VPS with SSH server (on port 22) for proxying p
 ```
 # ./setup_proxy.sh <public VPS IP>
 ```
-This will install packages on the server, set up firewall, fastd, iptables rules.
+This will install packages on the server, set up firewall, fastd and iptables rules.  This also creates a config file in the `peers` directory.
+
 Example,
 ```
 # ./setup_proxy.sh "1.2.3.4"
 ```
+
+## Run VPN damon on target
+
+Run the `fastd` daemon,
+```
+# ./run_target_daemon.sh
+```
+This will connect out to proxies.
 
 ## Remove a proxy
 
@@ -35,5 +47,5 @@ Example,
 ## Remove target configuration
 
 ```
-# ./teardown_target.sh "1.2.3.4"
+# ./teardown_target.sh
 ```
