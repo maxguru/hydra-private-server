@@ -14,7 +14,7 @@ This generates `config.sh`, `fastd.conf`.
 
 Example,
 ```
-# ./setup_target.sh 192.168.95.1 255.255.255.0 "80 443"
+# ./setup_target.sh 192.168.95.1 255.255.255.0 "80,443"
 ```
 
 ## Add a proxy

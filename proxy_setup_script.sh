@@ -71,18 +71,13 @@ cat >>/etc/ufw/before.rules <<EOL
 
 EOL
 
-for PORT in $PORTS
-do
-	ufw allow $PORT
-	cat >>/etc/ufw/before.rules <<EOL
+cat >>/etc/ufw/before.rules <<EOL
 
--A PREROUTING -d ${MY_IP} -p TCP --dport ${PORT} -j DNAT --to-destination ${VPN_DMZ_IP}
--A PREROUTING -d ${MY_IP} -p UDP --dport ${PORT} -j DNAT --to-destination ${VPN_DMZ_IP}
+-A PREROUTING -d ${MY_IP} -p TCP -m multiport --dports ${PORTS} -j DNAT --to-destination ${VPN_DMZ_IP}
+-A PREROUTING -d ${MY_IP} -p UDP -m multiport --dports ${PORTS} -j DNAT --to-destination ${VPN_DMZ_IP}
 -A POSTROUTING -j MASQUERADE
 
 EOL
-
-done
 
 echo "COMMIT" >> /etc/ufw/before.rules
 echo 'DEFAULT_FORWARD_POLICY="ACCEPT"' >> /etc/default/ufw
