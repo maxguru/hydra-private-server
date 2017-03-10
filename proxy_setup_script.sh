@@ -77,6 +77,7 @@ do
 	cat >>/etc/ufw/before.rules <<EOL
 
 -A PREROUTING -d ${MY_IP} -p TCP --dport ${PORT} -j DNAT --to-destination ${VPN_DMZ_IP}
+-A PREROUTING -d ${MY_IP} -p UDP --dport ${PORT} -j DNAT --to-destination ${VPN_DMZ_IP}
 -A POSTROUTING -j MASQUERADE
 
 EOL
