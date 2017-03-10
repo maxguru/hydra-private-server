@@ -2,7 +2,6 @@
 
 VPN_MY_IP="${1}"
 VPN_NETMASK="${2}"
-PORTS="${3}"
 
 FASTD_DATA=$(fastd --generate-key 2>/dev/null)
 MY_PRIVATE_KEY=$(echo $FASTD_DATA|awk '{print $2}')
@@ -15,7 +14,6 @@ MY_PUBLIC_KEY="${MY_PUBLIC_KEY}"
 
 VPN_MY_IP="${VPN_MY_IP}"
 VPN_NETMASK="${VPN_NETMASK}"
-PORTS="${PORTS}"
 
 EOL
 

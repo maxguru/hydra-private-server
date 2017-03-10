@@ -8,7 +8,6 @@ VPN_NETMASK="${5}"
 MY_PRIVATE_KEY="${6}"
 MY_PUBLIC_KEY="${7}"
 TARGET_PUBLIC_KEY="${8}"
-PORTS="${9}"
 
 mkdir -p /root/.ssh && \
 echo $AUTHORIZE_KEY > /root/.ssh/authorized_keys
@@ -69,17 +68,14 @@ cat >>/etc/ufw/before.rules <<EOL
 :POSTROUTING ACCEPT [0:0]
 :PREROUTING ACCEPT [0:0]
 
-EOL
-
-cat >>/etc/ufw/before.rules <<EOL
-
--A PREROUTING -d ${MY_IP} -p TCP -m multiport --dports ${PORTS} -j DNAT --to-destination ${VPN_DMZ_IP}
--A PREROUTING -d ${MY_IP} -p UDP -m multiport --dports ${PORTS} -j DNAT --to-destination ${VPN_DMZ_IP}
+-A PREROUTING -d ${MY_IP} -p TCP -m multiport ! --dports 22,10000 -j DNAT --to-destination ${VPN_DMZ_IP}
+-A PREROUTING -d ${MY_IP} -p UDP -m multiport ! --dports 22,10000 -j DNAT --to-destination ${VPN_DMZ_IP}
 -A POSTROUTING -j MASQUERADE
 
+COMMIT
+
 EOL
 
-echo "COMMIT" >> /etc/ufw/before.rules
 echo 'DEFAULT_FORWARD_POLICY="ACCEPT"' >> /etc/default/ufw
 echo net.ipv4.ip_forward=1 >> /etc/ufw/sysctl.conf
 

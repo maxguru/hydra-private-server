@@ -14,12 +14,12 @@ This generates `config.sh`, `fastd.conf`.
 
 Example,
 ```
-# ./setup_target.sh 192.168.95.1 255.255.255.0 "80,443"
+# ./setup_target.sh 192.168.95.1 255.255.255.0
 ```
 
 ## Add a proxy
 
-This will auto-configure a blank VPS with SSH server (on port 22) for proxying ports in `config.sh`.
+This will auto-configure a blank VPS with SSH server (on port 22) for proxying tcp/udp ports (except 22 and 10000) to the target.
 ```
 # ./setup_proxy.sh <public VPS IP>
 ```

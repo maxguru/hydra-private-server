@@ -20,4 +20,4 @@ key "${PROXY_PUBLIC_KEY}";
 remote "${PROXY_IP}":10000;
 EOL
 
-ssh "root@${PROXY_IP}" "bash -s" < ./proxy_setup_script.sh "'${SSH_KEY}'" "'${PROXY_IP}'" "'${VPN_MY_IP}'" "'${VPN_PROXY_IP}'" "'${VPN_NETMASK}'" "'${PROXY_PRIVATE_KEY}'" "'${PROXY_PUBLIC_KEY}'" "'${MY_PUBLIC_KEY}'" "'${PORTS}'"
+ssh "root@${PROXY_IP}" "bash -s" < ./proxy_setup_script.sh "'${SSH_KEY}'" "'${PROXY_IP}'" "'${VPN_MY_IP}'" "'${VPN_PROXY_IP}'" "'${VPN_NETMASK}'" "'${PROXY_PRIVATE_KEY}'" "'${PROXY_PUBLIC_KEY}'" "'${MY_PUBLIC_KEY}'"
