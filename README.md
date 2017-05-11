@@ -8,7 +8,7 @@ Clone this repo on the target system (where you have hidden serices running).
 
 Run setup to initialize settings,
 ```
-# ./setup_target.sh <target VPN interface IP> <target VPN interface netmask> "<space separated port list>"
+# ./setup_target.sh <target VPN interface IP> <target VPN interface netmask>
 ```
 This generates `config.sh`, `fastd.conf`.
 
