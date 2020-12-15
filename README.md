@@ -4,7 +4,7 @@ Let's say you have a hidden server behind firewalls (or NAT) that you want to ma
 
 ## Initial target setup
 
-Clone this repo on the target system (where you have hidden serices running).
+Clone this repo on the target system (where you have hidden services running).
 
 Run setup to initialize settings,
 ```
