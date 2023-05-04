@@ -1,6 +1,10 @@
-#!/bin/bash
+#!/bin/bash -e
 
-PROXY="${1}"
+PROXY_IP="${1}"
 
-rm "peers/${PROXY}.conf"
-ssh "root@${PROXY}" "bash -s" < ./proxy_teardown_script.sh
+ssh "root@${PROXY_IP}" "bash -s" < ./proxy_teardown_script.sh
+
+sudo sed "/# ---- ${PROXY_IP} >>>>/,/# <<<< ${PROXY_IP} ----/d" /etc/wireguard/hydra.conf > out
+sudo mv out /etc/wireguard/hydra.conf
+
+sudo systemctl restart wg-quick@hydra.service
